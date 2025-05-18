@@ -1,8 +1,8 @@
 import { Loader } from './Loader';
-import { usePeople } from '../context/PeopleContext';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { getPeople } from '../api';
-import { Person } from './Person';
+import { PersonTable } from './PersonTable';
+import { PeopleContext } from '../context/PeopleContext';
 
 export const People = () => {
   const {
@@ -12,7 +12,7 @@ export const People = () => {
     setErrorMessage,
     setIsLoading,
     setPeople,
-  } = usePeople();
+  } = useContext(PeopleContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,7 +46,9 @@ export const People = () => {
             <p data-cy="noPeopleMessage">There are no people on the server</p>
           )}
 
-          {!errorMessage && people.length > 0 && !isLoading && <Person />}
+          {!errorMessage && people.length > 0 && !isLoading && (
+            <PersonTable people={people} />
+          )}
         </div>
       </div>
     </>

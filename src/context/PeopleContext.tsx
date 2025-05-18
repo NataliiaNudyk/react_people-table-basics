@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from 'react';
+import React, { createContext } from 'react';
 import { Person } from '../types';
 
 type PeopleContextType = {
@@ -10,19 +10,11 @@ type PeopleContextType = {
   setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const defaultContext: PeopleContextType = {
+export const PeopleContext = createContext<PeopleContextType>({
   people: [],
   setPeople: () => {},
   isLoading: false,
   setIsLoading: () => {},
   errorMessage: '',
   setErrorMessage: () => {},
-};
-
-export const PeopleContext = createContext<PeopleContextType>(defaultContext);
-
-export const usePeople = () => {
-  const context = useContext(PeopleContext);
-
-  return context;
-};
+});

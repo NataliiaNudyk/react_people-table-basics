@@ -1,11 +1,16 @@
 import classNames from 'classnames';
 import { PersonLink } from './PersonLink';
 import { useParams } from 'react-router-dom';
-import { usePeople } from '../context/PeopleContext';
 
-export const Person = () => {
+import React from 'react';
+import { Person } from '../types';
+
+type Props = {
+  people: Person[];
+};
+
+export const PersonTable: React.FC<Props> = ({ people }) => {
   const { slugs } = useParams();
-  const { people } = usePeople();
 
   return (
     <table
