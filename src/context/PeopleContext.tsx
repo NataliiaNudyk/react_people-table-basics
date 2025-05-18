@@ -19,16 +19,10 @@ const defaultContext: PeopleContextType = {
   setErrorMessage: () => {},
 };
 
-export const PeopleContext = createContext<PeopleContextType | undefined>(
-  defaultContext,
-);
+export const PeopleContext = createContext<PeopleContextType>(defaultContext);
 
 export const usePeople = () => {
   const context = useContext(PeopleContext);
-
-  if (!context) {
-    throw new Error('usePeople must be used within a PeopleProvider');
-  }
 
   return context;
 };

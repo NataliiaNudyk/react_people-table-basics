@@ -24,7 +24,7 @@ export const Person = () => {
       </thead>
 
       <tbody>
-        {people.map((person, index) => {
+        {people.map(person => {
           const { sex, born, died, fatherName, motherName, slug } = person;
           const mother = people.find(p => p.name === motherName);
           const father = people.find(p => p.name === fatherName);
@@ -32,7 +32,7 @@ export const Person = () => {
           return (
             <tr
               data-cy="person"
-              key={index}
+              key={slug}
               className={classNames({
                 'has-background-warning': slugs === slug,
               })}
